@@ -106,7 +106,7 @@ class MezcalitoFileManagerExtension extends Extension implements PrependExtensio
             ]);
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $container->prependExtensionConfig('twig_component', [
             'defaults' => [

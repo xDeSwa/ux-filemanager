@@ -16,8 +16,6 @@ namespace Mezcalito\FileManagerBundle\Twig\Components;
 use Mezcalito\FileManagerBundle\Twig\Trait\FilesystemToolsTrait;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
-use Symfony\UX\LiveComponent\Attribute\LiveArg;
-use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -44,12 +42,5 @@ class Search
         $nodes = iterator_to_array($this->getFilesystem()->search($this->query));
 
         return \array_slice($nodes, 0, 10);
-    }
-
-    #[LiveListener('goToFolder')]
-    public function goToFolder(#[LiveArg] string $path): void
-    {
-        $this->query = '';
-        $this->emit('updateCurrentPath', ['path' => $path]);
     }
 }

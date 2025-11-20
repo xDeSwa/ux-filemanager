@@ -60,10 +60,10 @@ class File
     }
 
     #[LiveAction]
-    public function selectMedia(#[LiveArg] string $url): void
+    public function selectMedia(): void
     {
         $this->dispatchBrowserEvent('filemanager:selectMedia', [
-            'url' => $url,
+            'url' => $this->getNode()->getUrl(),
         ]);
     }
 

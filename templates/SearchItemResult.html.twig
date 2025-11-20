@@ -4,13 +4,17 @@
     {% set directory_path = node.path %}
     {% set parent_dir = node.path|replace({(node.filename): ''}) %}
 
-    <button class="fm-c-folder-card__link" data-action="live#emit" data-live-event-param="goToFolder" data-live-path-param="{{ node.isFile ? parent_dir : directory_path }}" data-fm-enter-action></button>
+    <button class="fm-c-folder-card__link" data-action="live#action" data-live-action-param="selectMedia" data-fm-enter-action></button>
 
     <div class="fm-c-search-result__picture">
         {% if node.isDir %}
             {% include '@MezcalitoFileManager/icons/folder.svg' %}
         {% else %}
-            {% include '@MezcalitoFileManager/icons/file-placeholder.svg' %}
+            {% if base64Content %}
+                <img src="data:image/png;base64, {{ this.base64Content }}" alt="{{ node.filename }}" width="32" height="32"/>
+            {% else %}
+                {% include '@MezcalitoFileManager/icons/file-placeholder.svg' %}
+            {% endif %}
         {% endif %}
     </div>
 
@@ -43,9 +47,3 @@
         {% endif %}
     {% endapply %}
 {% endmacro %}
-
-{#{% macro placeholder(props) %}#}
-{#    <div class='fm-c-file-card__loading'>#}
-{#        <span class='fm-c-file-card__bar-loader'></span>#}
-{#    </div>#}
-{#{% endmacro %}#}
