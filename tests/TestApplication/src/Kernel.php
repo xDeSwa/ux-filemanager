@@ -90,7 +90,10 @@ final class Kernel extends BaseKernel
                 'cookie_samesite' => 'lax',
                 'handler_id' => null,
             ];
-            $frameworkConfig['annotations']['enabled'] = false;
+
+            if (self::VERSION_ID < 80000) {
+                $frameworkConfig['annotations']['enabled'] = false;
+            }
         }
 
         if ('dev' === $container->env()) {

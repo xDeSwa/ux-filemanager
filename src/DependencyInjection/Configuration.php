@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('mezcalito_file_manager');
 
         $rootNode = $treeBuilder->getRootNode();
+        /* @phpstan-ignore-next-line */
         $rootNode
             ->fixXmlConfig('storage')
             ->children()
